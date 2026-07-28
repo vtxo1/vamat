@@ -299,9 +299,9 @@
   </div>
 
   <div class="metrics-grid">
-    <div class="metric"><div class="num" data-target="100" data-suffix="+">0</div><div class="lab">учеников подготовлено</div></div>
-    <div class="metric"><div class="num" data-target="2700" data-suffix="+">0</div><div class="lab">часов проведённых занятий</div></div>
-    <div class="metric"><div class="num" data-target="3.3" data-decimal="1" data-prefix="+">0</div><div class="lab">средний прирост балла ЕНТ / ЕГЭ</div></div>
+    <div class="metric"><div class="num" data-target="120" data-suffix="+">0</div><div class="lab">учеников подготовлено</div></div>
+    <div class="metric"><div class="num" data-target="1700" data-suffix="+">0</div><div class="lab">часов проведённых занятий</div></div>
+    <div class="metric"><div class="num" data-target="2.3" data-decimal="1" data-prefix="+">0</div><div class="lab">средний прирост балла ЕНТ / ЕГЭ</div></div>
     <div class="metric"><div class="num" data-target="84" data-suffix="%">0</div><div class="lab">учеников отмечают меньше страха перед предметом</div></div>
   </div>
 
