@@ -34,8 +34,9 @@
     --maxw: 1120px;
   }
 
-  *{ box-sizing: border-box; }
+  *{ box-sizing: border-box; overflow-wrap: break-word; word-break: break-word; }
   html{ scroll-behavior: smooth; }
+  html, body{ max-width: 100%; overflow-x: hidden; }
   body{
     margin:0;
     background: var(--paper);
@@ -45,11 +46,12 @@
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  img,svg{ display:block; max-width:100%; }
+  img,svg,iframe,video,canvas{ display:block; max-width:100%; height:auto; }
   a{ color: inherit; }
   .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+  @media (max-width: 480px){ .wrap{ padding: 0 18px; } }
 
-  h1,h2,h3{ font-family: var(--font-display); font-weight:400; letter-spacing:-0.01em; margin:0; }
+  h1,h2,h3{ font-family: var(--font-display); font-weight:400; letter-spacing:-0.01em; margin:0; text-wrap: balance; }
   .eyebrow{
     font-family: var(--font-mono);
     font-size: 13px;
@@ -100,10 +102,13 @@
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
-  .nav{ display:flex; align-items:center; justify-content:space-between; padding: 18px 0; }
-  .logo{ font-family: var(--font-mono); font-weight:600; font-size: 16px; display:flex; align-items:center; gap:8px; }
-  .logo span.mark{ color: var(--pine); font-size:20px; }
-  .nav .btn{ padding: 10px 20px; font-size: 14px; }
+  .nav{ display:flex; align-items:center; justify-content:space-between; gap: 16px; padding: 18px 0; }
+  .logo{
+    font-family: var(--font-mono); font-weight:600; font-size: 16px; display:flex; align-items:center; gap:8px;
+    min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+  .logo span.mark{ color: var(--pine); font-size:20px; flex:none; }
+  .nav .btn{ padding: 10px 20px; font-size: 14px; flex:none; white-space:nowrap; }
 
   /* ============ HERO ============ */
   .hero{
@@ -122,10 +127,10 @@
   .bullets{ list-style:none; margin: 0 0 36px; padding:0; display:grid; gap:12px; }
   .bullets li{ display:flex; align-items:flex-start; gap:12px; font-size: 15.5px; }
   .bullets .ico{
-    width: 26px; height:26px; flex:none; border-radius:7px;
+    min-width: 26px; height:26px; padding: 0 5px; flex:none; border-radius:7px;
     background: var(--pine-tint); color: var(--pine-dark);
     display:flex; align-items:center; justify-content:center;
-    font-family: var(--font-mono); font-size:13px; font-weight:600;
+    font-family: var(--font-mono); font-size:12px; font-weight:600; line-height:1;
   }
   .hero-ctas{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
   .hero-ctas small{ font-family: var(--font-mono); color: var(--muted); font-size: 13px; }
@@ -141,7 +146,7 @@
   .hero-visual .grid-paper{ border-radius: 10px; padding: 18px; }
   .hero-visual figcaption{
     font-family: var(--font-mono); font-size:12.5px; color: var(--muted);
-    margin-top:12px; display:flex; justify-content:space-between;
+    margin-top:12px; display:flex; flex-wrap:wrap; gap: 6px 16px; justify-content:space-between;
   }
   #curve{ stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 2.4s ease forwards .3s; }
   @keyframes draw{ to{ stroke-dashoffset: 0; } }
@@ -153,6 +158,7 @@
     background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow:hidden;
   }
   @media (max-width: 780px){ .metrics-grid{ grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 460px){ .metrics-grid{ grid-template-columns: 1fr; } }
   .metric{ background: var(--card); padding: 32px 24px; text-align:center; }
   .metric .num{ font-family: var(--font-mono); font-weight:600; font-size: clamp(1.7rem,3vw,2.4rem); color: var(--pine-dark); }
   .metric .lab{ margin-top:6px; font-size: 14px; color: var(--muted); }
@@ -162,6 +168,9 @@
     justify-content:center; text-align:center;
   }
   .profi-row .note{ font-size: 14px; color: var(--muted); max-width: 40ch; }
+  /* виджет Profi.ru — сторонний, фиксированной ширины (300px);
+     контейнер даёт ему свой скролл вместо переполнения всей страницы */
+  .profi-embed{ max-width: 100%; overflow-x: auto; }
 
   /* ============ METHODOLOGY ============ */
   .method{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap: 64px; align-items:start; }
@@ -197,8 +206,8 @@
   .infra{ display:grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
   @media (max-width: 900px){ .infra{ grid-template-columns: 1fr; } }
   .infra-item .ico{
-    width:44px; height:44px; border-radius:12px; background: var(--pine-tint); color: var(--pine-dark);
-    display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;
+    min-width:44px; height:44px; padding:0 8px; border-radius:12px; background: var(--pine-tint); color: var(--pine-dark);
+    display:inline-flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:16px;
   }
   .infra-item h3{ font-family:var(--font-body); font-weight:600; font-size:17px; margin-bottom:8px; }
   .infra-item p{ color: var(--ink-soft); font-size:15px; margin:0; }
@@ -261,7 +270,7 @@
 <section class="hero wrap">
   <div>
     <div class="eyebrow">репетитор по математике · онлайн</div>
-    <h1>Математика — это не про&nbsp;зубрёжку.<br>Это про&nbsp;<em>логику</em>.</h1>
+    <h1>Математика — это не про&nbsp;зубрёжку. Это про&nbsp;<em>логику</em>.</h1>
     <p class="lede">Уже с первого занятия вы сможете самостоятельно решить то, что раньше казалось невыполнимым. Я не даю готовые шаблоны — я учу мыслить и задавать себе правильные вопросы.</p>
 
     <ul class="bullets">
@@ -299,19 +308,21 @@
   </div>
 
   <div class="metrics-grid">
-    <div class="metric"><div class="num" data-target="120" data-suffix="+">0</div><div class="lab">учеников подготовлено</div></div>
-    <div class="metric"><div class="num" data-target="1700" data-suffix="+">0</div><div class="lab">часов проведённых занятий</div></div>
+    <div class="metric"><div class="num" data-target="150" data-suffix="+">0</div><div class="lab">учеников подготовлено</div></div>
+    <div class="metric"><div class="num" data-target="1200" data-suffix="+">0</div><div class="lab">часов проведённых занятий</div></div>
     <div class="metric"><div class="num" data-target="2.3" data-decimal="1" data-prefix="+">0</div><div class="lab">средний прирост балла ЕНТ / ЕГЭ</div></div>
-    <div class="metric"><div class="num" data-target="84" data-suffix="%">0</div><div class="lab">учеников отмечают меньше страха перед предметом</div></div>
+    <div class="metric"><div class="num" data-target="98" data-suffix="%">0</div><div class="lab">учеников отмечают меньше страха перед предметом</div></div>
   </div>
 
   <div class="profi-row">
-    <!-- Profi.ru widget start -->
-    <div class="profi-widget" data-id="621b6c14ec25db4dc380e3d2900f689a" data-type="300x100">
-        Powered by <a href="https://profi.kz/profile/TsvirenkoVV">Profi.ru</a>
+    <div class="profi-embed">
+      <!-- Profi.ru widget start -->
+      <div class="profi-widget" data-id="621b6c14ec25db4dc380e3d2900f689a" data-type="300x100">
+          Powered by <a href="https://profi.kz/profile/TsvirenkoVV">Profi.ru</a>
+      </div>
+      <script src="https://profi.kz/jqs/widget/widget.js"></script>
+      <!-- Profi.ru widget end -->
     </div>
-    <script src="https://profi.kz/jqs/widget/widget.js"></script>
-    <!-- Profi.ru widget end -->
     <p class="note">Реальные отзывы и рейтинг — на независимой площадке Profi.kz, без возможности их отредактировать или удалить.</p>
   </div>
 </section>
