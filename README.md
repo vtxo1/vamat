@@ -1,4 +1,3 @@
-
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -313,6 +312,7 @@
     </div>
     <script src="https://profi.kz/jqs/widget/widget.js"></script>
     <!-- Profi.ru widget end -->
+    <p class="note">Реальные отзывы и рейтинг — на независимой площадке Profi.kz, без возможности их отредактировать или удалить.</p>
   </div>
 </section>
 
@@ -486,7 +486,7 @@
 
 <script>
   // ===== 1) Замените на свой юзернейм Telegram, чтобы заявки прилетали вам в чат =====
-  const TELEGRAM_USERNAME = "@metronok"; // например "vadim_math"
+  const TELEGRAM_USERNAME = "metronok";
 
   // ===== Счётчики: анимация чисел при появлении в зоне видимости =====
   const nums = document.querySelectorAll('.metric .num');
@@ -530,7 +530,7 @@
 Направление: ${data.get('track')}
 Удобное время: ${data.get('time') || '—'}`;
 
-    if (TELEGRAM_USERNAME && TELEGRAM_USERNAME !== "@metronok") {
+    if (TELEGRAM_USERNAME && TELEGRAM_USERNAME !== "your_telegram_username") {
       const url = `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank');
       msg.textContent = "Открываю Telegram — останется нажать «Отправить».";
